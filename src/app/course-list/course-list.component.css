@@ -4,6 +4,7 @@
   width: 100%;
   justify-content: space-around;
   row-gap: 30px;
+  margin-top: 20px;
 }
 
 .card {

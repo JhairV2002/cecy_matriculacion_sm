@@ -13,9 +13,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CoursePageComponent } from './course-page/course-page.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, CourseListComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    CourseListComponent,
+    CoursePageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +36,9 @@ import { CourseListComponent } from './course-list/course-list.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatGridListModule,
+    MatTabsModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
