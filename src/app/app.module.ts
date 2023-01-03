@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudentsComponent } from './students/students.component';
@@ -23,6 +22,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MatDialogModule } from '@angular/material/dialog'
+
+
 
 @NgModule({
   declarations: [
@@ -36,6 +41,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     StudentFormComponent,
   ],
   imports: [
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

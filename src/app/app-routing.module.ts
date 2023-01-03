@@ -24,7 +24,13 @@ const routes: Routes = [
     path: 'students/:id',
     component: StudentFormComponent,
   },
-  { path: '', redirectTo: '/layout/dashboard', pathMatch: 'full' },
+  // {
+  //   path: '',
+  //   redirectTo: '/layout/dashboard', pathMatch: 'full' },
+
+    {
+      path: '',
+      redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'layout',
     loadChildren: () =>
@@ -34,6 +40,16 @@ const routes: Routes = [
     path: 'feature',
     loadChildren: () =>
       import('./feature/feature.module').then((m) => m.FeatureModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'layout-admin',
+    loadChildren: () =>
+      import('./layout-admin/layout-admin.module').then((m) => m.LayoutAdminModule),
   },
 ]
 

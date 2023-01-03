@@ -1,0 +1,55 @@
+<!--<app-person-toolbar [entityName]="form.name"></app-person-toolbar>-->
+
+<div class="grid justify-center mt-4">
+  <div class="card shadow-2xl shadow-black">
+    <div class="card-body">
+      <div class="card-title">
+        Formulario <span class="text-primary">inscripcion</span>
+      </div>
+      <div class="divider"></div>
+      <div class="grid">
+        <label for="" style="margin-bottom: 8px;">¿Como se entero del curso? </label>
+
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="true">
+          <option value="value1" disabled selected >Seleccione una opcion</option>
+          <option value="value1" >Propaganda por TV</option>
+          <option value="value2" >Me lo conto un amigo</option>
+          <option value="value3">Me lo conto un profesor</option>
+        </select>
+        <label for="" style="margin-bottom: 8px;">¿Que otro curso le gustaria seguir? </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Desarrollo de Software</option>
+          <option value="value2" >Modas</option>
+          <option value="value3">Arte culinario</option>
+        </select>
+        <label for="" style="margin-bottom: 8px;">El curso esta auspiciado por la institucion a la que pertenece:</label>
+        <div class="form-control">
+          <label class="label cursor-pointer justify-start">
+            <span class="label-text ml-2">No </span>
+            <input
+              onchange=""
+              type="checkbox"
+              class="toggle toggle-primary"
+              id="check"
+            />
+            <span class="label-text ml-2">Si</span>
+          </label>
+        </div>
+        <label style="margin-bottom: 8px; margin-top: 12px;">Nombre del contacto en la institucion: </label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id="contacto"
+          placeholder="Ejemplo: Hugo Perez"
+        />
+
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-primary btn-sm" (click)="save()">Guardar</button>
+        <button class="btn btn-sm">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

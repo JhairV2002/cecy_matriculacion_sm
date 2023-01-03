@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,9 +8,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(private router:Router) {
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  newFormLogin(): void {
+
+  }
+
+  isRequired(field: AbstractControl): boolean {
+    return field.hasValidator(Validators.required);
+  }
+
+  onSubmit() {
+  }
+
+  login(): void{
+    this.router.navigate(['/layout/inscription-form']);
+  }
+
+  requestPasswordReset() {
+  }
+
+  requestUserUnlock() {
+  }
+
+  redirect() {
+
+  }
+
+  redirectRegistration() {
+
+  }
 }
-
-
