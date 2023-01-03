@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Inscription } from '../inscription';
 import { InscriptionService } from '../inscription.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-inscription',
@@ -11,7 +12,8 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private inscriptionService: InscriptionService,
     private acticatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   initialForm: Inscription = {
@@ -33,11 +35,16 @@ export class InscriptionComponent implements OnInit {
     });
   }
   save(): void {
-    console.log(this.form);
-    this.inscriptionService.save(this.form).subscribe(() => {
-      this.form = this.initialForm;
-      this.router.navigate(['/layout/inscription-list']);
-    });
+    // console.log(this.form);
+    // this.inscriptionService.save(this.form).subscribe(() => {
+    //   this.form = this.initialForm;
+    //   this.router.navigate(['/layout/inscription-list']);
+    // });
+    this.dialog.open(DialogSaveComponent);
+  }
+
+  cancelar(): void {
+    this.dialog.open(DialogCancelComponent);
   }
 
   findById(id: number): void {
@@ -51,4 +58,20 @@ export class InscriptionComponent implements OnInit {
       console.log('borrado');
     });
   }
+}
+
+
+@Component({
+  selector: 'app-dialog-save',
+  templateUrl: './dialog-save.component.html',
+})
+export class DialogSaveComponent{
+
+}
+@Component({
+  selector: 'app-dialog-cancel',
+  templateUrl: './dialog-cancel.component.html',
+})
+export class DialogCancelComponent{
+
 }

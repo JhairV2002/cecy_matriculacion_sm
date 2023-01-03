@@ -46,7 +46,7 @@ const routes: Routes = [
         component: InscriptionListComponent,
       },
       {
-        path: 'request-list',
+        path: 'requests-list',
         component: RequestsListComponent,
       },
 

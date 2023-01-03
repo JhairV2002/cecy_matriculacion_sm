@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   login(): void{
     if (this.user == "admin") {
-      this.router.navigate(['/layout-admin/requests-list'])
+      this.router.navigate(['/layout/dashboard'])
     }else{
       this.router.navigate(['/layout/inscription-form']);
     }

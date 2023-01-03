@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   }
 
   redirect() {
-
+    this.router.navigate(['/layout/requests-list'])
   }
 
   redirectRegistration() {

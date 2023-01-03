@@ -21,6 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SendRequestDialogComponent } from './requests/requests-list/requests-list.component';
+import { DialogCancelComponent } from './inscription/inscription-form/inscription.component';
+import { DialogSaveComponent } from './inscription/inscription-form/inscription.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { SendRequestDialogComponent } from './requests/requests-list/requests-li
     RequestsListComponent,
     RequestsSearchComponent,
     RequestsToolbarComponent,
-    SendRequestDialogComponent
+    SendRequestDialogComponent,
+    DialogCancelComponent,
+    DialogSaveComponent
   ],
   imports: [
     CommonModule,

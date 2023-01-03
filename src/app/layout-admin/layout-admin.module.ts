@@ -5,7 +5,6 @@ import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
-
 @NgModule({
   declarations: [
     HeaderAdminComponent,
