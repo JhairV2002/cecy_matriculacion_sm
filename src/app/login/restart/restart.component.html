@@ -1,0 +1,28 @@
+
+<div class="grid justify-center mt-20">
+  <div class="card shadow-2xl shadow-black">
+    <div class="card-body">
+      <div class="card-title">
+        Recuperar <span class="text-primary">Contraseña</span>
+      </div>
+      <div class="divider"></div>
+      <div class="grid justify-center">
+        <label for="" style="margin-bottom: 8px;">Ingrese su numero de cedula:</label>
+        <input
+          style="margin-bottom: 15px;"
+          class="input input-primary"
+          type="text"
+          name=""
+          id=""
+          placeholder="Cedula de identidad"
+          [(ngModel)]="cedula"
+        />
+
+      </div>
+      <div class="card-actions" style="margin-top: 10px;">
+        <button class="btn btn-primary btn-sm" (click)="send()">Comprobar</button>
+        <button class="btn btn-sm">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="flex flex-row p-2 bg-white">
+  <input
+    #inputSearch
+    class="input input-primary input-sm"
+    type="text"
+    name=""
+    placeholder="Buscar"
+    id=""
+    (input)="onInput(inputSearch.value)"
+  />
+</div>
+
+<select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+  <option value="" selected >Filtar</option>
+  <option value="value1" >Estudiante </option>
+  <option value="value2" >Docente</option>
+  <option value="value2" >Externo</option>
+</select>
+

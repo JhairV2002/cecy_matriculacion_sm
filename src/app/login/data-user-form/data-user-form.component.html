@@ -1,0 +1,128 @@
+<div class="grid justify-center mt-4">
+  <div class="card shadow-2xl shadow-black">
+    <div class="card-body">
+      <div class="card-title">
+        Formulario <span class="text-primary">Registro</span>
+      </div>
+      <div class="divider"></div>
+      <div class="grid">
+        <label for="" style="margin-bottom: 8px;">Nombres:</label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id=""
+          placeholder="Nombres completos"
+        />
+
+        <label for="" style="margin-bottom: 8px;">Apellidos:</label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id=""
+          placeholder="Apellidos completos"
+        />
+
+        <label style="margin-bottom: 8px; margin-top: 12px;">Correo Electronico: </label>
+        <input
+          class="input input-primary"
+          type="email"
+          name=""
+          id="contacto"
+          placeholder="a@abc.com"
+        />
+
+        <label for="" style="margin-bottom: 8px;">Cedula de Cuidadania:</label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id=""
+          placeholder="Cedula de Cuidadania"
+        />
+
+        <label for="" style="margin-bottom: 8px;">Fecha de Nacimiento:</label>
+        <input
+          class="input input-primary"
+          type="date"
+          name=""
+          id=""
+          placeholder="05/09/2002"
+        />
+
+        <label for="" style="margin-bottom: 8px;">Sexo: </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Masculino </option>
+          <option value="value2" >Femenino</option>
+        </select>
+
+        <label for="" style="margin-bottom: 8px;">Etnia: </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Mestixo </option>
+          <option value="value2" >Indigena</option>
+          <option value="value2" >Blanco</option>
+          <option value="value2" >Afroecuatoriano</option>
+          <option value="value2" >Otros</option>
+        </select>
+
+        <label style="margin-bottom: 8px; margin-top: 12px;">Direccion domiciliaria: </label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id="contacto"
+          placeholder="Calle principal, transversal, numero de casa"
+        />
+
+        <label style="margin-bottom: 8px; margin-top: 12px;">Numero Celular </label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id="contacto"
+          placeholder="xxx-xxx-xxxx"
+        />
+
+        <label style="margin-bottom: 8px; margin-top: 12px;">Numero Convencional: </label>
+        <input
+          class="input input-primary"
+          type="text"
+          name=""
+          id="contacto"
+          placeholder="xxx-xxxx"
+        />
+
+        <label for="" style="margin-bottom: 8px;">Nivel de instruccion: </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Primaria </option>
+          <option value="value2" >Secundaria</option>
+          <option value="value2" >Superior</option>
+        </select>
+
+        <label for="" style="margin-bottom: 8px;">Institucion donde trabaja / estudia: </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Yavirac </option>
+          <option value="value2" >Linkear</option>
+          <option value="value2" >It</option>
+        </select>
+
+        <label for="" style="margin-bottom: 8px;">Cual es su condicion con el instituto?: </label>
+        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
+          <option value="" selected >Seleccione una opcion</option>
+          <option value="value1" >Estudiante </option>
+          <option value="value2" >Docente</option>
+          <option value="value2" >Externo</option>
+        </select>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-primary btn-sm" (click)="saveUser()">Guardar</button>
+        <button class="btn btn-sm">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
