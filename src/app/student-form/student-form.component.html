@@ -1,0 +1,172 @@
+<p>{{ id$ | async }}</p>
+
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Informacion personal </mat-panel-title>
+      <mat-panel-description>
+        Nombre, Apellido, Cedula, Edad, Etc.
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="container text-left">
+      <div class="row">
+        <div class="col">
+          <img src="https://placeimg.com/300/300/people" alt="" />
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombres</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Cedula</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Genero</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Estado Civil</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Tipo Estudiante</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Carrera</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Informacion del curso </mat-panel-title>
+      <mat-panel-description>
+        Nombre del curso, Responsable, Cupos, etc
+        <mat-icon>book</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col">
+          <img src="https://placeimg.com/300/300/tech" alt="" />
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Carrera</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Cupos</mat-label>
+            <input matInput />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Gratuito</mat-label>
+            <input matInput />
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <h5>Requerimientos</h5>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Item 1</mat-list-item>
+            <mat-list-item role="listitem">Item 2</mat-list-item>
+            <mat-list-item role="listitem">Item 3</mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Documentos </mat-panel-title>
+      <mat-panel-description>
+        Revision de documentos necesarios para la matricula
+        <mat-icon>book</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col">
+          <div>
+            <div class="card" style="width: 13rem">
+              <img
+                src="https://placeimg.com/200/200/people"
+                class="img-thumbnail"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Cedula de Identificacion</h5>
+                <button mat-raised-button color="accent">Ver</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+            <div class="card" style="width: 13rem">
+              <img
+                src="https://placeimg.com/200/200/people"
+                class="img-thumbnail"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Cedula de Identificacion</h5>
+                <button mat-raised-button color="accent">Ver</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h5>Observaciones</h5>
+
+          <mat-selection-list #obs>
+            <mat-list-option *ngFor="let ob of observations">
+              {{ ob }}
+            </mat-list-option>
+          </mat-selection-list>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Obsercaciones</mat-label>
+            <textarea
+              matInput
+              placeholder="Ex. La cedula se ve borrosa"
+            ></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Agregar</button>
+        </div>
+        <div class="col">
+          <button mat-raised-button color="primary">Validar</button>
+        </div>
+        <div class="col">
+          <button mat-raised-button color="warn">Cancelar</button>
+        </div>
+        <div class="col">
+          <button mat-raised-button color="accent">Notificar Estudiante</button>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
