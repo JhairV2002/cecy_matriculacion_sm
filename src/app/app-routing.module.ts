@@ -5,7 +5,6 @@ import { CoursePageComponent } from './course-page/course-page.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StudentsComponent } from './students/students.component';
 
-
 const routes: Routes = [
   {
     path: 'courses',
@@ -28,9 +27,11 @@ const routes: Routes = [
   //   path: '',
   //   redirectTo: '/layout/dashboard', pathMatch: 'full' },
 
-    {
-      path: '',
-      redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: '/courses',
+    pathMatch: 'full',
+  },
   {
     path: 'layout',
     loadChildren: () =>
@@ -49,9 +50,11 @@ const routes: Routes = [
   {
     path: 'layout-admin',
     loadChildren: () =>
-      import('./layout-admin/layout-admin.module').then((m) => m.LayoutAdminModule),
+      import('./layout-admin/layout-admin.module').then(
+        (m) => m.LayoutAdminModule
+      ),
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

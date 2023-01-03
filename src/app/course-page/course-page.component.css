@@ -15,3 +15,6 @@ h1 {
 .course-information {
   width: 70%;
 }
+.header {
+  display: flex;
+}
