@@ -13,10 +13,22 @@ const routes: Routes = [
     path: 'courses/:id',
     component: CoursePageComponent,
   },
-];
+  { path: '', redirectTo: '/layout/dashboard', pathMatch: 'full' },
+  {
+    path: 'layout',
+    loadChildren: () =>
+      import('./layout/layout.module').then((m) => m.LayoutModule),
+  },
+  {
+    path: 'feature',
+    loadChildren: () =>
+      import('./feature/feature.module').then((m) => m.FeatureModule),
+  }
+
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
