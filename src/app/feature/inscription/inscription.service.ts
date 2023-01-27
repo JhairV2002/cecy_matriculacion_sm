@@ -10,13 +10,13 @@ export class InscriptionService {
   constructor(private http: HttpClient) {}
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ "Content-Type": "application/json" })  ,
   };
 
-  private url: string = 'http://localhost:8080/api/inscription';
+  private url: string = 'http://localhost:8080/api/formInscripcion';
 
   public save(inscription: Inscription): Observable<Inscription> {
-    return this.http.post<Inscription>(`${this.url}/save`, inscription, this.httpOptions);
+    return this.http.post<Inscription>(this.url+"/save", inscription, this.httpOptions);
   }
 
   public findByid(id: number): Observable<Inscription> {
