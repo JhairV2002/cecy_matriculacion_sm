@@ -1,0 +1,12 @@
+.courses-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-around;
+    row-gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .card {
+    width: 300px;
+  }

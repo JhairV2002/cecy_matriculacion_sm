@@ -64,7 +64,8 @@
               "browserTarget": "visualizacion-cursos:build:production"
             },
             "development": {
-              "browserTarget": "visualizacion-cursos:build:development"
+              "browserTarget": "visualizacion-cursos:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

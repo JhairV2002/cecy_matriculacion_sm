@@ -1,5 +1,5 @@
 .courses-container {
-  display: inline-flex;
+  display: flex;
   flex-flow: row wrap;
   width: 100%;
   justify-content: space-around;
@@ -9,4 +9,15 @@
 
 .card {
   width: 300px;
+}
+
+.title-center {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.card-container {
+  width: 100%;
 }

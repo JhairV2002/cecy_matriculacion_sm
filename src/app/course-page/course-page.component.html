@@ -1,4 +1,4 @@
-<h1>{{ course.title }}</h1>
+<!-- <h1>{{ cursos | json }}</h1> -->
 <div class="information-container">
   <div class="course-information">
     <mat-tab-group>
@@ -15,9 +15,9 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <mat-list-item *ngFor="let responsable of course.responsables">
+              <mat-list-item *ngFor="let responsable of cursos[0].instructores">
                 <mat-icon matListItemIcon>account_circle</mat-icon>
-                <div matListItemTitle>{{ responsable }}</div>
+                <div matListItemTitle>{{ responsable.nombreApellidos }}</div>
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
@@ -32,9 +32,11 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <mat-list-item *ngFor="let schedule of course.schedule">
+              <mat-list-item *ngFor="let horario of cursos[0].horarios">
+                <div *ngFor="let schedule of horario.dias">
                 <mat-icon matListItemIcon>calendar_today</mat-icon>
-                <div matListItemTitle>{{ schedule }}</div>
+                <span matListItemTitle>{{ schedule.descripcion }} - {{horaInicio}} - {{horaFin}}</span>
+              </div>
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
@@ -49,9 +51,9 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <mat-list-item *ngFor="let requirement of course.requirements">
+              <mat-list-item *ngFor="let requirement of cursos[0].requerimientos">
                 <mat-icon matListItemIcon>file_copy</mat-icon>
-                <div matListItemTitle>{{ requirement }}</div>
+                <div matListItemTitle>{{ requirement.descripcion }}</div>
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
@@ -60,9 +62,9 @@
       <mat-tab label="Contenido">
         <mat-list>
           <div mat-subheader>Contenido a impartir en el curso</div>
-          <mat-list-item *ngFor="let content of course.content">
+          <mat-list-item *ngFor="let content of cursos[0].contenidos">
             <mat-icon matListItemIcon>bookmark</mat-icon>
-            <div matListItemTitle>{{ content }}</div>
+            <div matListItemTitle>{{ content.descripcion }}</div>
           </mat-list-item>
         </mat-list>
       </mat-tab>
@@ -70,9 +72,9 @@
       <mat-tab label="Pre-requisitos">
         <mat-list>
           <div mat-subheader>Pre requisitos para tomar el curso</div>
-          <mat-list-item *ngFor="let preRequirement of course.preRequirements">
+          <mat-list-item *ngFor="let preRequirement of cursos[0].preRequisitos">
             <mat-icon matListItemIcon>account_balance_wallet</mat-icon>
-            <div matListItemTitle>{{ preRequirement }}</div>
+            <div matListItemTitle>{{ preRequirement.descripcion }}</div>
           </mat-list-item>
         </mat-list>
       </mat-tab>
@@ -82,8 +84,7 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>{{cursos[0].nombre}}</mat-card-title>
       </mat-card-header>
       <img
         mat-card-image
@@ -92,14 +93,11 @@
       />
       <mat-card-content>
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz
-          breeds of dog from Japan. A small, agile dog that copes very well with
-          mountainous terrain, the Shiba Inu was originally bred for hunting.
+          {{cursos[0].descripcion}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+      <mat-card-actions class="center">
+        <button mat-raised-button color="primary"><mat-icon>assignment</mat-icon>MATRICULARSE</button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -17,6 +17,15 @@ import { CoursePageComponent } from './course-page/course-page.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { CarreersComponent } from './carreers/carreers.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CourseListPipe } from './course-list/course-list.pipe';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CorseListCheckboxPipe } from './course-list/corse-list-checkbox.pipe';
+import { CourseListCheckboxNonfreePipe } from './course-list/course-list-checkbox-nonfree.pipe';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +33,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
     NavBarComponent,
     CourseListComponent,
     CoursePageComponent,
+    CarreersComponent,
+    CourseListPipe,
+    CorseListCheckboxPipe,
+    CourseListCheckboxNonfreePipe,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -39,6 +53,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatTabsModule,
     MatExpansionModule,
+    MatInputModule,
+    FormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],

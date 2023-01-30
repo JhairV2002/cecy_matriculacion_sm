@@ -1,0 +1,17 @@
+
+<div class="courses-container">
+  <!-- <div>{{carrers$ | async | json}}</div> -->
+  <mat-card class="example-card card"  *ngFor="let carreer of carrers$ | async">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{carreer.nombre}}</mat-card-title>
+        <mat-card-subtitle> <button mat-button mat-raised-button [routerLink]="['/courses', carreer.nombre]"  color="primary">
+          Ver cursos
+        </button></mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+    </mat-card-content>
+  </mat-card>
+  </div>
+  

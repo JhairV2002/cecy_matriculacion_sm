@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+import { CarrersService } from '../carreers/carrers.service';
+import { CoursePageService } from '../course-page/course-page.service';
+import { Carreras } from '../interfaces/carreers';
 import { Course } from './course';
+import { CourseListService } from './course-list.service';
 
 @Component({
   selector: 'app-course-list',
@@ -7,47 +13,32 @@ import { Course } from './course';
   styleUrls: ['./course-list.component.css'],
 })
 export class CourseListComponent {
-  courses: Course[] = [
-    {
-      id: 1,
-      title: 'Html Basico',
-      description: 'Curso de html basico para desarrollo web',
-      responsables: ['Ing. Pablo Tamayo', 'Ing. Yogledis Herrera'],
-      content: ['Que es el hipertexto', 'Principales tags'],
-      preRequirements: ['Ningun pre requisito necesario'],
-      requirements: ['Copia de Cedula'],
-      schedule: ['Lun-Vier 13:00 - 15:00'],
-    },
+  constructor(
+    private route: ActivatedRoute,
+    private courseListService: CourseListService
+  ) {}
 
-    {
-      id: 2,
-      title: 'CSS Basico',
-      description: 'Curso de CSS basico para desarrollo web',
-      responsables: ['Ing. Pablo Tamayo', 'Ing. Yogledis Herrera'],
+  value: string = '';
+  checked_gratis: boolean = false;
+  checked_pago: boolean = false;
 
-      content: [
-        'Que es el estilo en cascada',
-        'Principales formas de aplicar estilo',
-      ],
-      preRequirements: ['HTML Basico'],
-      requirements: ['Copia de Cedula', 'Certificado de Html basico'],
-      schedule: ['Lun-Vier 13:00 - 15:00'],
-    },
+  nombreCarrera$ = this.route.paramMap.pipe(
+    map((params) => params.get('nombreCarrera'))
+  );
 
-    {
-      id: 3,
-      title: 'Javascript Basico',
-      description: 'Curso de javascript basico para desarrollo web',
-      responsables: ['Ing. Pablo Tamayo', 'Ing. Yogledis Herrera'],
+  cursos: Carreras[] = [];
 
-      content: ['Que es Javascript ', 'Manejo del DOM'],
-      preRequirements: ['HTML Basico', 'CSS Basico'],
-      requirements: [
-        'Copia de Cedula',
-        'Certificado de html basico',
-        'Certificado de CSS basico',
-      ],
-      schedule: ['Lun-Vier 13:00 - 15:00'],
-    },
-  ];
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      if (params.get('nombreCarrera')) {
+        this.findByNombreCarrera(params.get('nombreCarrera')!);
+      }
+    });
+  }
+
+  findByNombreCarrera(nombre: string) {
+    this.courseListService.getCoursesByCarrerName(nombre).subscribe((res) => {
+      this.cursos = res;
+    });
+  }
 }

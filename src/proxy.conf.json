@@ -1,0 +1,6 @@
+{
+    "/visualizacion_carrera_cursos": {
+      "target": "http://localhost:8083",
+      "secure": false
+    }
+  }

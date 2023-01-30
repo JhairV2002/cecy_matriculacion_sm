@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CarreersComponent } from './carreers/carreers.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CoursePageComponent } from './course-page/course-page.component';
 
 const routes: Routes = [
   {
-    path: 'courses',
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'courses',
+  },
+  {
+    path: 'courses/:nombreCarrera',
     component: CourseListComponent,
   },
-
   {
-    path: 'courses/:id',
+    path: 'carreers',
+    component: CarreersComponent,
+  },
+  {
+    path: 'courses/name/:nombreCurso',
     component: CoursePageComponent,
   },
 ];
@@ -19,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

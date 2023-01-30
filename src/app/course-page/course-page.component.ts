@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { Course } from '../course-list/course';
+import { Carreras, Curso } from '../interfaces/carreers';
+import { CoursePageService } from './course-page.service';
 
 @Component({
   selector: 'app-course-page',
@@ -9,14 +11,31 @@ import { Course } from '../course-list/course';
   styleUrls: ['./course-page.component.css'],
 })
 export class CoursePageComponent implements OnInit {
-  course!: Course;
+  constructor(
+    private route: ActivatedRoute,
+    private coursesPageService: CoursePageService
+  ) {}
+
+  cursos: Curso[] = [];
   panelOpenState: boolean = false;
+  horarios = [{}];
 
-  constructor(private route: ActivatedRoute) { }
+  horaInicio: string = '';
+  horaFin: string = '';
 
-  id$ = this.route.paramMap.pipe(map((params) => params.get('id')));
   ngOnInit(): void {
-    this.course = history.state;
-    // console.log(this.course);
+    this.route.paramMap.subscribe((params) => {
+      if (params.get('nombreCurso')) {
+        this.findByNombreCarrera(params.get('nombreCurso')!);
+      }
+    });
+  }
+
+  findByNombreCarrera(nombre: string) {
+    this.coursesPageService.getCoursesByCarrerName(nombre).subscribe((res) => {
+      this.cursos = res;
+      this.horaInicio = res[0].horarios[0].horaInicio[0].descripcion;
+      this.horaFin = res[0].horarios[0].horaFin[0].descripcion;
+    });
   }
 }
