@@ -13,10 +13,10 @@ export class RequestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private url: string = 'http://localhost:8080/api/request';
+  private url: string = 'http://localhost:8000/api/persona';
 
   public save(request: Request): Observable<Request> {
-    return this.http.post<Request>(`${this.url}/save`, request, this.httpOptions);
+    return this.http.post<Request>(`${this.url}/`, request, this.httpOptions);
   }
 
   public findByid(id: number): Observable<Request> {
@@ -37,7 +37,7 @@ export class RequestService {
    * findAll
    */
   public findAll(): Observable<Request[]> {
-    return this.http.get<Request[]>(`${this.url}/findAll`, this.httpOptions);
+    return this.http.get<Request[]>(`${this.url}/`, this.httpOptions);
   }
   /**
    * deleteByid

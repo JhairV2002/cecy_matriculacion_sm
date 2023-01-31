@@ -13,6 +13,7 @@
           name=""
           id=""
           placeholder="Nombres completos"
+          [(ngModel)]="initialForm.nombres"
         />
 
         <label for="" style="margin-bottom: 8px;">Apellidos:</label>
@@ -22,6 +23,7 @@
           name=""
           id=""
           placeholder="Apellidos completos"
+          [(ngModel)]="initialForm.apellidos"
         />
 
         <label style="margin-bottom: 8px; margin-top: 12px;">Correo Electronico: </label>
@@ -31,6 +33,7 @@
           name=""
           id="contacto"
           placeholder="a@abc.com"
+          [(ngModel)]="initialForm.email"
         />
 
         <label for="" style="margin-bottom: 8px;">Cedula de Cuidadania:</label>
@@ -40,6 +43,7 @@
           name=""
           id=""
           placeholder="Cedula de Cuidadania"
+          [(ngModel)]="initialForm.cedula"
         />
 
         <label for="" style="margin-bottom: 8px;">Fecha de Nacimiento:</label>
@@ -49,14 +53,11 @@
           name=""
           id=""
           placeholder="05/09/2002"
+          [(ngModel)]="initialForm.fecha_nacimiento"
         />
 
         <label for="" style="margin-bottom: 8px;">Sexo: </label>
-        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
-          <option value="" selected >Seleccione una opcion</option>
-          <option value="value1" >Masculino </option>
-          <option value="value2" >Femenino</option>
-        </select>
+        <app-combobox-api (idEmitter)="initialForm.sexo=$event" [id]="initialForm.sexo"></app-combobox-api>
 
         <label for="" style="margin-bottom: 8px;">Etnia: </label>
         <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
@@ -75,6 +76,7 @@
           name=""
           id="contacto"
           placeholder="Calle principal, transversal, numero de casa"
+          [(ngModel)]="initialForm.direccion"
         />
 
         <label style="margin-bottom: 8px; margin-top: 12px;">Numero Celular </label>
@@ -84,6 +86,7 @@
           name=""
           id="contacto"
           placeholder="xxx-xxx-xxxx"
+          [(ngModel)]="initialForm.celular"
         />
 
         <label style="margin-bottom: 8px; margin-top: 12px;">Numero Convencional: </label>
@@ -93,6 +96,7 @@
           name=""
           id="contacto"
           placeholder="xxx-xxxx"
+          [(ngModel)]="initialForm.convencional"
         />
 
         <label for="" style="margin-bottom: 8px;">Nivel de instruccion: </label>
@@ -103,13 +107,8 @@
           <option value="value2" >Superior</option>
         </select>
 
-        <label for="" style="margin-bottom: 8px;">Institucion donde trabaja / estudia: </label>
-        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
-          <option value="" selected >Seleccione una opcion</option>
-          <option value="value1" >Yavirac </option>
-          <option value="value2" >Linkear</option>
-          <option value="value2" >It</option>
-        </select>
+        <label for="" style="margin-bottom: 8px;">Institucion/Empresa: </label>
+        <app-combobox-institucion (idEmitter)="initialForm.institucion=$event" [id]="initialForm.institucion"></app-combobox-institucion>
 
         <label for="" style="margin-bottom: 8px;">Cual es su condicion con el instituto?: </label>
         <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">

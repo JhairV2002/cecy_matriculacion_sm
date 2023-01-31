@@ -20,7 +20,7 @@ export class InscriptionComponent implements OnInit {
     id: 0,
     userId: 1,
     courseId: 1,
-    publicity: 1,
+    publicity: 0,
     otherCourses: 1,
     requirements: 1,
     sponsoredCourse: false,

@@ -12,7 +12,6 @@ import { FeatureRoutingModule } from './feature-routing.module';
 import { InscriptionComponent } from './inscription/inscription-form/inscription.component';
 import { InscriptionListComponent } from './inscription/inscription-list/inscription-list.component';
 import { InscriptionToolbarComponent } from './inscription/inscription-toolbar/inscription-toolbar.component';
-import { ComboComponent } from './inscription/combo/combo.component';
 import { InscriptionSearchComponent } from './inscription/inscription-search/inscription-search.component';
 import { RequestsListComponent } from './requests/requests-list/requests-list.component';
 import { RequestsSearchComponent } from './requests/requests-search/requests-search.component';
@@ -23,6 +22,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SendRequestDialogComponent } from './requests/requests-list/requests-list.component';
 import { DialogCancelComponent } from './inscription/inscription-form/inscription.component';
 import { DialogSaveComponent } from './inscription/inscription-form/inscription.component';
+import { ComboboxPublicityComponent } from './combobox-publicity/combobox-publicity.component';
+
 
 @NgModule({
   declarations: [
@@ -36,13 +37,13 @@ import { DialogSaveComponent } from './inscription/inscription-form/inscription.
     InscriptionListComponent,
     InscriptionToolbarComponent,
     InscriptionSearchComponent,
-    ComboComponent,
     RequestsListComponent,
     RequestsSearchComponent,
     RequestsToolbarComponent,
     SendRequestDialogComponent,
     DialogCancelComponent,
-    DialogSaveComponent
+    DialogSaveComponent,
+    ComboboxPublicityComponent,
   ],
   imports: [
     CommonModule,

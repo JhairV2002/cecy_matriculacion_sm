@@ -14,27 +14,19 @@ export interface Task {
 })
 export class RequestsListComponent {
 
-  task: Task = {
-    enabled: false,
-    subtaks: [
-      {requestId:1, names:'A Aa',cedula:'1725252694', lastnames:'AAA Aaa', institution:'Yavirac', enabled:false},
-       {requestId:2, names:'B Bb',cedula:'1725252694', lastnames:'BBB Bbb', institution:'It', enabled:false},
-       {requestId:3, names:'C Cc',cedula:'1725252694', lastnames:'CCC Ccc', institution:'Linkear', enabled:false},
-       {requestId:4, names:'D Dd',cedula:'1725252694', lastnames:'DDD Ddd', institution:'Yavirac', enabled:false}
-    ],
-  };
+  requestsList: Request[] = [];
 
   allComplete: boolean = false;
 
   updateAllComplete() {
-    this.allComplete = this.requestsList != null && this.requestsList.every(t => t.enabled);
+    this.allComplete = this.requestsList != null && this.requestsList.every(t => t.aceptado);
   }
 
   someComplete(): boolean {
     if (this.requestsList == null) {
       return false;
     }
-    return this.requestsList?.filter(t => t.enabled).length > 0 && !this.allComplete;
+    return this.requestsList?.filter(t => t.aceptado).length > 0 && !this.allComplete;
   }
 
   setAll(enabled: boolean) {
@@ -42,14 +34,12 @@ export class RequestsListComponent {
     if (this.requestsList == null) {
       return;
     }
-    this.requestsList.forEach(t => (t.enabled = enabled));
+    this.requestsList.forEach(t => (t.aceptado = enabled));
   }
 
   constructor(private requestService: RequestService, public sendDialog: MatDialog) {}
 
-  requestsList: Request[] = [];
-
-  save(){
+  save(): void{
     this.sendDialog.open(SendRequestDialogComponent);
   }
   ngOnInit(): void {
@@ -60,10 +50,9 @@ export class RequestsListComponent {
    * findAll
    */
   public findAll(){
-      this.requestsList = [{requestId:1, names:'A Aa',cedula:'1725252694', lastnames:'AAA Aaa', institution:'Yavirac', enabled:true},
-  {requestId:2, names:'B Bb',cedula:'1725252694', lastnames:'BBB Bbb', institution:'It', enabled:true},
-  {requestId:3, names:'C Cc',cedula:'1725252694', lastnames:'CCC Ccc', institution:'Linkear', enabled:true},
-  {requestId:4, names:'D Dd',cedula:'1725252694', lastnames:'DDD Ddd', institution:'Yavirac', enabled:true}];
+    this.requestService.findAll().subscribe(
+      (response) => this.requestsList = response
+    )
   }
   /**
    * findByName

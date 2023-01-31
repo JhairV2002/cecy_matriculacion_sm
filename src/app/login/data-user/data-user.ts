@@ -1,4 +1,4 @@
-export interface Request{
+export interface DataUser{
   id: number;
   nombres: string;
   apellidos: string;
@@ -10,7 +10,5 @@ export interface Request{
   email: string;
   sexo: number;
   institucion: number;
-  aceptado: boolean;
 
 }
-

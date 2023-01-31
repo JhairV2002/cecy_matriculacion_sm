@@ -6,7 +6,7 @@ import { InscriptionComponent } from '../feature/inscription/inscription-form/in
 import { InscriptionListComponent } from '../feature/inscription/inscription-list/inscription-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
-import { LoginComponent } from '../login/login/login.component';
+import { LoginComponent } from '../login/login/login-form/login.component';
 import { RequestsListComponent } from '../feature/requests/requests-list/requests-list.component';
 
 const routes: Routes = [

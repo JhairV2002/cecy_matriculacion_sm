@@ -21,7 +21,7 @@
       <tbody>
         <tr *ngFor="let request of requestsList">
           <td>
-            <a [routerLink]="['../request-form', request.requestId]">
+            <a [routerLink]="['../request-form', request.id]">
               <svg
                 class="h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,13 +41,14 @@
             </a>
           </td>
           <td>{{ request.cedula }}</td>
-          <td>{{ request.names }}</td>
-          <td>{{ request.lastnames }}</td>
-          <td>{{ request.institution }}</td>
+          <td>{{ request.nombres }}</td>
+          <td>{{ request.apellidos }}</td>
+          <td>{{ request.institucion }}</td>
           <td>
-              <mat-checkbox [(ngModel)]="request.enabled"
+            <input class="toggle toggle-primary" type="checkbox" name="" id="" [ngModel]="request.aceptado" >
+              <!-- <mat-checkbox [(ngModel)]="request.aceptado"
                             (ngModelChange)="updateAllComplete()">
-              </mat-checkbox>
+              </mat-checkbox> -->
           </td>
         </tr>
       </tbody>
