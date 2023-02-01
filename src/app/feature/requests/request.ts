@@ -1,4 +1,4 @@
-export interface Request{
+export interface Request {
   id: number;
   nombres: string;
   apellidos: string;
@@ -11,6 +11,4 @@ export interface Request{
   sexo: number;
   institucion: number;
   aceptado: boolean;
-
 }
-

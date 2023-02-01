@@ -13,20 +13,41 @@ export interface Task {
   templateUrl: './requests-list.component.html',
 })
 export class RequestsListComponent {
+  constructor(
+    private requestService: RequestService,
+    public sendDialog: MatDialog
+  ) {}
 
   requestsList: Request[] = [];
 
   allComplete: boolean = false;
 
+  modifiedData: Request[] = [];
+
+  change(request: Request) {
+    // let requestAccepted = request.aceptado;
+    if (this.modifiedData.includes(request)) {
+      let index = this.modifiedData.indexOf(request);
+      this.modifiedData.splice(index, 1);
+    } else {
+      this.modifiedData.push(request);
+    }
+    console.log(this.modifiedData);
+  }
+
   updateAllComplete() {
-    this.allComplete = this.requestsList != null && this.requestsList.every(t => t.aceptado);
+    this.allComplete =
+      this.requestsList != null && this.requestsList.every((t) => t.aceptado);
   }
 
   someComplete(): boolean {
     if (this.requestsList == null) {
       return false;
     }
-    return this.requestsList?.filter(t => t.aceptado).length > 0 && !this.allComplete;
+    return (
+      this.requestsList?.filter((t) => t.aceptado).length > 0 &&
+      !this.allComplete
+    );
   }
 
   setAll(enabled: boolean) {
@@ -34,12 +55,17 @@ export class RequestsListComponent {
     if (this.requestsList == null) {
       return;
     }
-    this.requestsList.forEach(t => (t.aceptado = enabled));
+    this.requestsList.forEach((t) => (t.aceptado = enabled));
   }
 
-  constructor(private requestService: RequestService, public sendDialog: MatDialog) {}
-
-  save(): void{
+  save() {
+    this.modifiedData.forEach((request) => {
+      this.requestService.update(request.id, request).subscribe((res) => {
+        this.requestsList = this.requestsList.filter((req) =>
+          req.id === res.id ? res : req
+        );
+      });
+    });
     this.sendDialog.open(SendRequestDialogComponent);
   }
   ngOnInit(): void {
@@ -49,10 +75,10 @@ export class RequestsListComponent {
   /**
    * findAll
    */
-  public findAll(){
-    this.requestService.findAll().subscribe(
-      (response) => this.requestsList = response
-    )
+  public findAll() {
+    this.requestService
+      .findAll()
+      .subscribe((response) => (this.requestsList = response));
   }
   /**
    * findByName
@@ -71,5 +97,4 @@ export class RequestsListComponent {
   selector: 'app-send-requests-dialog',
   templateUrl: './send-requests-dialog.component.html',
 })
-export class SendRequestDialogComponent {
-}
+export class SendRequestDialogComponent {}

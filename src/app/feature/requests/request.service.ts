@@ -19,6 +19,10 @@ export class RequestService {
     return this.http.post<Request>(`${this.url}/`, request, this.httpOptions);
   }
 
+  public update(id: number, request: Request): Observable<Request> {
+    return this.http.put<Request>(`${this.url}/${id}/`, request);
+  }
+
   public findByid(id: number): Observable<Request> {
     return this.http.get<Request>(`${this.url}/${id}`, this.httpOptions);
   }
