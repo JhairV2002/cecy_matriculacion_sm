@@ -25,7 +25,6 @@ export class RequestsListComponent {
   modifiedData: Request[] = [];
 
   change(request: Request) {
-    // let requestAccepted = request.aceptado;
     if (this.modifiedData.includes(request)) {
       let index = this.modifiedData.indexOf(request);
       this.modifiedData.splice(index, 1);

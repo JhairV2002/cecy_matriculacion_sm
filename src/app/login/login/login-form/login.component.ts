@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../user';
-import { ParseSourceFile } from '@angular/compiler';
+import { ConstantPool, ParseSourceFile } from '@angular/compiler';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,32 +15,26 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private userService: UserService
     ) {}
-
-    user: string = ''
     initialForm =  {
-    username :'',
-    password :''
+    "username" :'',
+    "password" :''
     }
 
   ngOnInit(): void {}
 
-  login(){
-    // console.log("logears")
-    // this.userService.login(this.initialForm).subscribe(
-    //   response => {
-    //     let result = response.json();
-    //     if (result > 0){
-    //       console.log("si logea")
-    //       let token = response.headers.get("Authorization")
-    //       this.router.navigate(['/layout/inscription-list']);
-    //     }
-    //   }
-    // );
-    if (this.user == "admin") {
-      this.router.navigate(['/layout/dashboard'])
-    }else{
-      this.router.navigate(['/layout/inscription-form']);
-    }
+  login(): void{
+    this.userService.login(this.initialForm).subscribe(
+      (response: HttpResponse<User>) => {
+        if (response.headers.get('Authorization')!=null){
+          sessionStorage.setItem("crm_token", String(response.headers.get('Authorization')));
+          sessionStorage.setItem("username", this.initialForm.username);
+        }
+      }
+    )
+    //this.loggedIn = true;
+    sessionStorage.setItem("loggedIn","true");
+    console.log('logea')
+    //this.router.navigate(["layout"]);
   }
   restart(): void {
     this.router.navigate(['/login/restart'])

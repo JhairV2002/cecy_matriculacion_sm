@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
@@ -11,18 +11,24 @@ export class UserService {
 
   private url: string = "http://localhost:8080/login/";
 
-  // public login(username: string, password: string) {
-  //   const encodeData = btoa(`${username}:${password}`)
+  // public login(user: any) {
+  //   const encodeData = btoa(user)
   //   console.log(encodeData)
   //   const httpOptions = {
   //   headers: new HttpHeaders({'Authorization' : 'Basic ' + encodeData})  ,
   //   };
-  //   return this.http.post(this.url, null, httpOptions);
+  //   return console.log(this.http.post(this.url, null, httpOptions));
   // }
 
-  login(user: User) : Observable<any>{
-    let url = this.url;
-    return this.http.post(url, user)
+  public login(user: User): Observable<HttpResponse<User>> {
+    const encodeData = btoa(user.username + ":" + user.password);
+    console.log(encodeData)
+    const httpOptions = {
+      headers: new HttpHeaders({'Authorization' : 'Basic ' + encodeData})  ,
+      observe: 'response' as 'body'
+    };
+    console.log(httpOptions)
+    return this.http.post<HttpResponse<User>>(this.url, {}, httpOptions)
   }
 
 }
