@@ -22,15 +22,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSortModule } from '@angular/material/sort';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -53,8 +50,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTabsModule,
     MatExpansionModule,
     NgbModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent, BrowserAnimationsModule],
 })
-export class AppModule { }
+export class AppModule {}

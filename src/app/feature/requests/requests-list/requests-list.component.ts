@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Request } from '../request';
 import { RequestService } from '../request.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export interface Task {
   enabled: boolean;
@@ -15,14 +18,49 @@ export interface Task {
 export class RequestsListComponent {
   constructor(
     private requestService: RequestService,
-    public sendDialog: MatDialog
+    public sendDialog: MatDialog,
+    private _liveAnnouncer: LiveAnnouncer
   ) {}
 
+  displayedColumns: string[] = [
+    'id',
+    'nombres',
+    'apellidos',
+    'institucion',
+    'activo',
+  ];
+
   requestsList: Request[] = [];
+
+  dataSource: MatTableDataSource<Request>;
 
   allComplete: boolean = false;
 
   modifiedData: Request[] = [];
+
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
+  // ngAfterViewInit() {
+  //   this.dataSource.sort = this.sort;
+  // }
+
+  ngOnInit(): void {
+    this.findAll();
+
+    console.log(this.dataSource);
+  }
+
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
 
   change(request: Request) {
     if (this.modifiedData.includes(request)) {
@@ -31,12 +69,18 @@ export class RequestsListComponent {
     } else {
       this.modifiedData.push(request);
     }
+    console.log(request);
     console.log(this.modifiedData);
   }
 
-  updateAllComplete() {
+  watchCheckbox(param: any) {
+    console.log(param);
+  }
+
+  updateAllComplete(element: any) {
     this.allComplete =
       this.requestsList != null && this.requestsList.every((t) => t.aceptado);
+    console.log(element);
   }
 
   someComplete(): boolean {
@@ -54,7 +98,21 @@ export class RequestsListComponent {
     if (this.requestsList == null) {
       return;
     }
-    this.requestsList.forEach((t) => (t.aceptado = enabled));
+    this.requestsList.forEach((t) => {
+      // si aceptado es diferente de enabled agregar al arreglo
+      // y si ya esta ahi quitarlo
+
+      if (t.aceptado != enabled) {
+        if (this.modifiedData.includes(t)) {
+          let index = this.modifiedData.indexOf(t);
+          this.modifiedData.splice(index, 1);
+        } else {
+          this.modifiedData.push(t);
+        }
+      }
+      t.aceptado = enabled;
+    });
+    console.log(this.modifiedData);
   }
 
   save() {
@@ -65,19 +123,20 @@ export class RequestsListComponent {
         );
       });
     });
+    this.modifiedData = [];
     this.sendDialog.open(SendRequestDialogComponent);
-  }
-  ngOnInit(): void {
-    this.findAll();
   }
 
   /**
    * findAll
    */
   public findAll() {
-    this.requestService
-      .findAll()
-      .subscribe((response) => (this.requestsList = response));
+    this.requestService.findAll().subscribe((response) => {
+      this.requestsList = response;
+      this.dataSource = new MatTableDataSource(this.requestsList);
+      this.dataSource.sort = this.sort;
+      console.log(this.requestService);
+    });
   }
   /**
    * findByName
