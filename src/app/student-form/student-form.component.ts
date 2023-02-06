@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { switchMap } from 'rxjs';
+import { StudentFormService } from './student-form.service';
 
 @Component({
   selector: 'app-student-form',
@@ -8,12 +9,26 @@ import { map } from 'rxjs';
   styleUrls: ['./student-form.component.css'],
 })
 export class StudentFormComponent {
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private studentService: StudentFormService
+  ) { }
 
-  id$ = this.route.paramMap.pipe(map((params) => params.get('id')));
-
-  observations: string[] = [
-    'La cedula se ve borrosa',
-    'Se pidio acta de grado, no certificado',
-  ];
+  student$ = this.route.params.pipe(
+    switchMap((params) => this.studentService.findStudent(params['id']))
+  );
+  // ngOnInit(): void {
+  //   this.route.paramMap.subscribe((param) => {
+  //     if (param.get('id')) {
+  //       this.findStudent(param.get('id')!);
+  //     }
+  //   });
+  // }
+  //
+  // findStudent(id: string) {
+  //   this.studentService.findStudent(id).subscribe((res) => {
+  //     this.student = res;
+  //     console.log(this.student);
+  //   });
+  // }
 }

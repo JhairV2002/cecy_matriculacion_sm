@@ -1,11 +1,9 @@
-<p>{{ id$ | async }}</p>
-
 <mat-accordion class="example-headers-align" multi>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title> Informacion personal </mat-panel-title>
       <mat-panel-description>
-        Nombre, Apellido, Cedula, Edad, Etc.
+        Informacion personal y de contacto
         <mat-icon>account_circle</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
@@ -16,38 +14,75 @@
         </div>
         <div class="col">
           <mat-form-field appearance="fill">
+            <mat-label>Cedula</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.cedula"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
             <mat-label>Nombres</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.nombres"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Apellidos</mat-label>
-            <input matInput />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Cedula</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.nombres"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Genero</mat-label>
-            <input matInput />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Estado Civil</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.sexo"
+            />
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field appearance="fill">
             <mat-label>Tipo Estudiante</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.tipo"
+            />
           </mat-form-field>
+
           <mat-form-field appearance="fill">
-            <mat-label>Carrera</mat-label>
-            <input matInput />
+            <mat-label>Celular</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.celular"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.email"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Telefono Convencional</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(student$ | async)!.convencional"
+            />
           </mat-form-field>
         </div>
       </div>
@@ -142,11 +177,11 @@
         <div>
           <h5>Observaciones</h5>
 
-          <mat-selection-list #obs>
-            <mat-list-option *ngFor="let ob of observations">
-              {{ ob }}
-            </mat-list-option>
-          </mat-selection-list>
+          <!-- <mat-selection-list #obs> -->
+          <!--   <mat-list-option *ngFor="let ob of observations"> -->
+          <!--     {{ ob }} -->
+          <!--   </mat-list-option> -->
+          <!-- </mat-selection-list> -->
 
           <mat-form-field class="example-full-width">
             <mat-label>Obsercaciones</mat-label>
