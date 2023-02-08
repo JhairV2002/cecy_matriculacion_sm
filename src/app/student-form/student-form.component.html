@@ -1,11 +1,13 @@
-<h1>{{ student$ | async | json }}</h1>
+<!-- <h1>{{ student$ | async | json }}</h1>
 <div>
   {{ course$ | async | json }}
 </div>
 
 <div>
   {{ requeriments$ | async | json }}
-</div>
+</div> -->
+
+<h2>{{(student$ | async)!.personCecy.nombres }}</h2>
 
 <mat-accordion class="example-headers-align" multi>
   <mat-expansion-panel>
