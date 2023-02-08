@@ -8,7 +8,7 @@ import { Carreras } from '../interfaces/carreers';
 export class CourseListService {
   constructor(private http: HttpClient) {}
 
-  url = 'http://localhost:8083/visualizacion_carrera_cursos/findByName/';
+  url = 'http://localhost:8083/api/carreras/findByName/';
 
   getCoursesByCarrerName(term: string) {
     return this.http.get<Carreras[]>(`${this.url}${term}/`);

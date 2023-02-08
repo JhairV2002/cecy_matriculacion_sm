@@ -10,7 +10,9 @@ export interface Curso {
   gratis: boolean;
   cupos: number;
   estado: string;
-  duracion: string;
+  duracion?: number;
+  fechaInicio: string;
+  fechaFin: string;
   descripcion: string;
   instructores: Instructores[];
   requerimientos: Requerimiento[];

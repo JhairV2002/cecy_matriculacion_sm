@@ -34,9 +34,12 @@
             <mat-list>
               <mat-list-item *ngFor="let horario of cursos[0].horarios">
                 <div *ngFor="let schedule of horario.dias">
-                <mat-icon matListItemIcon>calendar_today</mat-icon>
-                <span matListItemTitle>{{ schedule.descripcion }} - {{horaInicio}} - {{horaFin}}</span>
-              </div>
+                  <mat-icon matListItemIcon>calendar_today</mat-icon>
+                  <span matListItemTitle
+                    >{{ schedule.descripcion }} - {{ horaInicio }} -
+                    {{ horaFin }}</span
+                  >
+                </div>
               </mat-list-item>
             </mat-list>
           </mat-expansion-panel>
@@ -51,7 +54,9 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
-              <mat-list-item *ngFor="let requirement of cursos[0].requerimientos">
+              <mat-list-item
+                *ngFor="let requirement of cursos[0].requerimientos"
+              >
                 <mat-icon matListItemIcon>file_copy</mat-icon>
                 <div matListItemTitle>{{ requirement.descripcion }}</div>
               </mat-list-item>
@@ -84,7 +89,7 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{cursos[0].nombre}}</mat-card-title>
+        <mat-card-title>{{ cursos[0].nombre }}</mat-card-title>
       </mat-card-header>
       <img
         mat-card-image
@@ -92,12 +97,20 @@
         alt="Photo of a Shiba Inu"
       />
       <mat-card-content>
-        <p>
-          {{cursos[0].descripcion}}
-        </p>
+        <h3>
+          {{ cursos[0].descripcion }}
+        </h3>
+        <h3>
+          Duracion: {{ cursos[0].duracion }} dias
+        </h3>
+        <h3>
+          {{cursos[0].gratis? 'Gratis': 'Pagado'}}
+        </h3>
       </mat-card-content>
       <mat-card-actions class="center">
-        <button mat-raised-button color="primary"><mat-icon>assignment</mat-icon>MATRICULARSE</button>
+        <button mat-raised-button color="primary">
+          <mat-icon>assignment</mat-icon>MATRICULARSE
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
