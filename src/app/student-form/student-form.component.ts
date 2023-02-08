@@ -30,6 +30,8 @@ export class StudentFormComponent {
   information!: FormInscription;
   observations!: Observation[];
   btnText: string = 'Agregar';
+  matriculaBtnColor = 'primary';
+  matriculaBtnText = 'Validar';
 
   student$ = this.route.params.pipe(
     switchMap((params) =>
@@ -47,6 +49,14 @@ export class StudentFormComponent {
   documents$ = this.student$.pipe(map((res) => res.documents));
   observations$ = this.student$.pipe(map((res) => res.observations));
 
+  completedObservations$ = this.student$.pipe(
+    map(
+      (res) =>
+        res.observations.filter((obs) => obs.completado).length ===
+          res.observations.length || res.observations.length === 0
+    )
+  );
+
   onChangeCheckbox(e: any) {
     console.log(e);
   }
@@ -54,6 +64,53 @@ export class StudentFormComponent {
   updateObservation(obs: Observation) {
     this.btnText = 'Actualizar';
     this.observation = obs;
+  }
+
+  updateFormState() {
+    this.completedObservations$.subscribe((res) => {
+      if (res) {
+        this.student$
+          .pipe(
+            tap((res) => {
+              // 2: proceso
+              // 3: Notificado
+              // 4: Matriculado
+              res.state.id = 4;
+            })
+          )
+          .subscribe((res) => {
+            this.observationService
+              .saveObservations(res)
+              .subscribe((res) => console.log(res));
+          });
+      } else {
+        this.student$
+          .pipe(
+            tap((res) => {
+              // 2: proceso
+              // 3: Notificado
+              // 4: Matriculado
+              res.state.id = 3;
+            })
+          )
+          .subscribe((res) => {
+            this.observationService
+              .saveObservations(res)
+              .subscribe((res) => console.log(res));
+          });
+      }
+    });
+    // this.student$
+    //   .pipe(
+    //     tap((res) => {
+    //       res.state.id = 2;
+    //     })
+    //   )
+    //   .subscribe((res) => {
+    //     this.observationService
+    //       .saveObservations(res)
+    //       .subscribe((res) => console.log(res));
+    //   });
   }
 
   sendObservations() {

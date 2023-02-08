@@ -5,7 +5,7 @@ export interface FormInscription {
   userId?: number;
   courseId: number;
   otherCourses?: any;
-  state?: any;
+  state: Catalogue;
   publicity?: any;
   documents: Document[];
   observations: Observation[];
@@ -31,6 +31,12 @@ interface PersonCecy {
 }
 
 interface SexoId {
+  id: number;
+  code: string;
+  value: string;
+}
+
+interface Catalogue {
   id: number;
   code: string;
   value: string;
