@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor() {}
 
- intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+ intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (sessionStorage.getItem("crm_token")!= null && request.url!= "http://localhost:8080/login/"){
       let tokenRequest = request.clone(
         {

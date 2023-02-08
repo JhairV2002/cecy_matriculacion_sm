@@ -25,7 +25,7 @@ export class PersonCecyService {
     return this.http.get<PersonCecy>(`${this.url}/${id}`, this.httpOptions);
   }
 
-  public findByCedula(cedula : String): Observable<PersonCecy>{
+  public findByCedula(cedula?: string | null): Observable<PersonCecy>{
     return this.http.get<PersonCecy>(`${this.url}/cedula/${cedula}`, this.httpOptions)
   }
 

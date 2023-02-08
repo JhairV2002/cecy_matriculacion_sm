@@ -10,7 +10,7 @@
       <div class="grid">
         <label for="" style="margin-bottom: 8px;">¿Como se entero del curso? </label>
 
-        <app-combobox-publicity (idEmitter)="initialForm.publicity=$event" [id]="initialForm.publicity"></app-combobox-publicity>
+        <app-combobox-publicity (idEmitter)="initialForm.publicity.id=$event" [id]="initialForm.publicity.id"></app-combobox-publicity>
         <label for="" style="margin-bottom: 8px;">¿Que otro curso le gustaria seguir? </label>
         <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
           <option value="" selected >Seleccione una opcion</option>

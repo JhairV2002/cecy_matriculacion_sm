@@ -15,7 +15,7 @@ export class DataUserService {
   };
 
   private url: string = 'http://localhost:8000/api/persona';
-  private urlCecy: string = 'http://localhost:8080/api/personCecy';
+  private urlCecy: string = 'http://localhost:8082/api/personCecy';
 
   public save(dataUser: PersonCecy): Observable<PersonCecy> {
     return this.http.post<PersonCecy>(`${this.urlCecy}/`, dataUser, this.httpOptions);

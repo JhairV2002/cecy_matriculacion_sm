@@ -21,7 +21,7 @@ export class RequestsListComponent {
 
 
   constructor(
-    private requestService: PersonCecyService,
+    private personCecyService: PersonCecyService,
     public sendDialog: MatDialog,
     private _liveAnnouncer: LiveAnnouncer,
     private userService: UserService
@@ -143,7 +143,7 @@ export class RequestsListComponent {
         this.userForm.roles = request.tipoPersonaId
       }
 
-      this.requestService.update(request.id, request).subscribe((res) => {
+      this.personCecyService.update(request.id, request).subscribe((res) => {
         this.requestsList = this.requestsList.filter((req) =>
           req.id === res.id ? res : req
         );
@@ -175,11 +175,11 @@ export class RequestsListComponent {
    * findAll
    */
   public findAll() {
-    this.requestService.findAll().subscribe((response) => {
+    this.personCecyService.findAll().subscribe((response) => {
       this.requestsList = response;
       this.dataSource = new MatTableDataSource(this.requestsList);
       this.dataSource.sort = this.sort;
-      console.log(this.requestService);
+      console.log(this.personCecyService);
     });
   }
   /**

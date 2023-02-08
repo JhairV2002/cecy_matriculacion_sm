@@ -13,7 +13,7 @@ export class RequestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private urlCecy: string = 'http://localhost:8080/api/personaCecy';
+  private urlCecy: string = 'http://localhost:8082/api/personaCecy';
   private url: string = 'http://localhost:8080/api/persona';
 
   public save(request: Request): Observable<Request> {

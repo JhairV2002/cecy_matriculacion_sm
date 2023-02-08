@@ -16,7 +16,7 @@ export class InscriptionService {
   private url: string = 'http://localhost:8080/api/formInscription';
 
   public save(inscription: Inscription): Observable<Inscription> {
-    return this.http.post<Inscription>(this.url+"/save", inscription, this.httpOptions);
+    return this.http.post<Inscription>(this.url+"/", inscription, this.httpOptions);
   }
 
   public findByid(id: number): Observable<Inscription> {

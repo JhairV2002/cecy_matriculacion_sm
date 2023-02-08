@@ -27,7 +27,7 @@ export class RestartComponent {
   ) {}
 
   exist: number = 0;
-  captureCedula: String = ""
+  captureCedula: string = ""
   initialForm: PersonCecy = {
     id: 0,
     nombres: '',
@@ -58,7 +58,7 @@ export class RestartComponent {
       aceptado: false
   };
 
-  send(cedula: String): void{
+  send(cedula: string): void{
     {
       this.personCecyService.findByCedula(cedula).subscribe(
         (response) => {
