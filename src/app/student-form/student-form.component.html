@@ -1,3 +1,12 @@
+<h1>{{ student$ | async | json }}</h1>
+<div>
+  {{ course$ | async | json }}
+</div>
+
+<div>
+  {{ requeriments$ | async | json }}
+</div>
+
 <mat-accordion class="example-headers-align" multi>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -18,7 +27,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.cedula"
+              [value]="(student$ | async)!.personCecy.cedula"
             />
           </mat-form-field>
           <mat-form-field appearance="fill">
@@ -26,7 +35,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.nombres"
+              [value]="(student$ | async)!.personCecy.nombres"
             />
           </mat-form-field>
 
@@ -35,7 +44,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.nombres"
+              [value]="(student$ | async)!.personCecy.apellidos"
             />
           </mat-form-field>
 
@@ -44,7 +53,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.sexo"
+              [value]="(student$ | async)!.personCecy.sexoId.value"
             />
           </mat-form-field>
         </div>
@@ -54,7 +63,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.tipo"
+              [value]="(student$ | async)!.personCecy.tipoPersonaId.value"
             />
           </mat-form-field>
 
@@ -63,7 +72,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.celular"
+              [value]="(student$ | async)!.personCecy.celular"
             />
           </mat-form-field>
 
@@ -72,7 +81,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.email"
+              [value]="(student$ | async)!.personCecy.email"
             />
           </mat-form-field>
 
@@ -81,7 +90,7 @@
             <input
               matInput
               [readonly]="true"
-              [value]="(student$ | async)!.convencional"
+              [value]="(student$ | async)!.personCecy.convencional"
             />
           </mat-form-field>
         </div>
@@ -105,30 +114,45 @@
         <div class="col">
           <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(course$ | async)!.nombre"
+            />
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>Carrera</mat-label>
             <input matInput />
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field appearance="fill">
             <mat-label>Cupos</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(course$ | async)!.cupos"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Gratuito</mat-label>
-            <input matInput />
+            <input
+              matInput
+              [readonly]="true"
+              [value]="(course$ | async)!.gratis ? 'Gratuito' : 'Pagado'"
+            />
           </mat-form-field>
         </div>
         <div class="col">
-          <h5>Requerimientos</h5>
-          <mat-list role="list">
-            <mat-list-item role="listitem">Item 1</mat-list-item>
-            <mat-list-item role="listitem">Item 2</mat-list-item>
-            <mat-list-item role="listitem">Item 3</mat-list-item>
+          <h3>Requerimientos</h3>
+          <mat-list
+            role="list"
+            *ngFor="let requeriment of (requeriments$ | async)!"
+          >
+            <mat-list-item role="listitem">
+              {{ requeriment.descripcion }}</mat-list-item
+            >
           </mat-list>
         </div>
       </div>
@@ -145,7 +169,7 @@
     </mat-expansion-panel-header>
     <div class="container text-center">
       <div class="row justify-content-center">
-        <div class="col">
+        <div class="col" *ngFor="let document of (documents$ | async)!">
           <div>
             <div class="card" style="width: 13rem">
               <img
@@ -153,44 +177,52 @@
                 class="img-thumbnail"
               />
               <div class="card-body">
-                <h5 class="card-title">Cedula de Identificacion</h5>
+                <h5 class="card-title">{{ document.archivoUrl }}</h5>
                 <button mat-raised-button color="accent">Ver</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div>
-            <div class="card" style="width: 13rem">
-              <img
-                src="https://placeimg.com/200/200/people"
-                class="img-thumbnail"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Cedula de Identificacion</h5>
-                <button mat-raised-button color="accent">Ver</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div>
           <h5>Observaciones</h5>
 
-          <!-- <mat-selection-list #obs> -->
-          <!--   <mat-list-option *ngFor="let ob of observations"> -->
-          <!--     {{ ob }} -->
-          <!--   </mat-list-option> -->
-          <!-- </mat-selection-list> -->
+          <mat-list #obs>
+            <mat-list-item *ngFor="let ob of (student$ | async)!.observations">
+              <mat-checkbox
+                class="example-margin"
+                (change)="onChangeCheckbox($event)"
+                [(ngModel)]="ob.completado"
+              >
+                {{ ob.description }}
+              </mat-checkbox>
+              <button
+                (click)="updateObservation(ob)"
+                mat-button
+                color="primary"
+              >
+                <mat-icon> border_color</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
 
           <mat-form-field class="example-full-width">
             <mat-label>Obsercaciones</mat-label>
             <textarea
               matInput
               placeholder="Ex. La cedula se ve borrosa"
+              [(ngModel)]="observation.description"
+              maxlength="256"
+              #obsInput
             ></textarea>
+            <mat-hint align="end">{{ obsInput.value.length }} / 256</mat-hint>
           </mat-form-field>
-          <button mat-raised-button color="primary">Agregar</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="sendObservations()"
+          >
+            {{ btnText }}
+          </button>
         </div>
         <div class="col">
           <button mat-raised-button color="primary">Validar</button>

@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Student } from '../interfaces/students';
+import { FormInscription } from '../interfaces/FormInscription';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentFormService {
-  constructor(private htt: HttpClient) { }
+  constructor(private htt: HttpClient) {}
 
-  url = 'http://localhost:8000/api/persona/';
+  url = 'http://localhost:8082/api/formInscription/';
 
-  findStudent(id: string) {
-    return this.htt.get<Student>(`${this.url}${id}`);
+  findFormInscription(id: string) {
+    return this.htt.get<FormInscription>(`${this.url}${id}`);
   }
 }
