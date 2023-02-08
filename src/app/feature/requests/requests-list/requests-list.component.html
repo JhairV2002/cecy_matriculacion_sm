@@ -1,8 +1,7 @@
 <div class="">
-  <app-requests-toolbar (termEmitter)="findByName($event)"></app-requests-toolbar>
   <div class="overflow-x-auto bg-white">
 
-    <table mat-table [dataSource]="dataSource" matSort 
+    <table mat-table [dataSource]="dataSource" matSort
      matSortAction="id"
     matSortDirection="desc"
        class="mat-elevation-z8">
@@ -50,13 +49,11 @@
             </mat-checkbox>
         Activo
       </th>
-      <td mat-cell *matCellDef="let element" >
+      <td mat-cell *matCellDef="let element">
         <mat-checkbox [(ngModel)]="element.aceptado"
                       (change)="change(element)"
                       (ngModelChange)="updateAllComplete(element)"
                       >
-
-                      
         </mat-checkbox>
     </td>
       <!-- <td mat-cell *matCellDef="let element"> {{element.aceptado}} </td> -->

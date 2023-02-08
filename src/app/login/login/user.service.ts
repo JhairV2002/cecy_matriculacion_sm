@@ -11,15 +11,6 @@ export class UserService {
 
   private url: string = "http://localhost:8080/login/";
 
-  // public login(user: any) {
-  //   const encodeData = btoa(user)
-  //   console.log(encodeData)
-  //   const httpOptions = {
-  //   headers: new HttpHeaders({'Authorization' : 'Basic ' + encodeData})  ,
-  //   };
-  //   return console.log(this.http.post(this.url, null, httpOptions));
-  // }
-
   public login(user: User): Observable<HttpResponse<User>> {
     const encodeData = btoa(user.username + ":" + user.password);
     console.log(encodeData)

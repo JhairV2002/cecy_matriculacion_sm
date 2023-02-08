@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     //this.loggedIn = true;
     sessionStorage.setItem("loggedIn","true");
     console.log('logea')
-    //this.router.navigate(["layout"]);
+    this.router.navigate(["layout"]);
   }
   restart(): void {
     this.router.navigate(['/login/restart'])

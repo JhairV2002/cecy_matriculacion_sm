@@ -13,14 +13,15 @@ export class RequestService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  private url: string = 'http://localhost:8000/api/persona';
+  private urlCecy: string = 'http://localhost:8080/api/personaCecy';
+  private url: string = 'http://localhost:8080/api/persona';
 
   public save(request: Request): Observable<Request> {
-    return this.http.post<Request>(`${this.url}/`, request, this.httpOptions);
+    return this.http.post<Request>(`${this.urlCecy}/`, request, this.httpOptions);
   }
 
   public update(id: number, request: Request): Observable<Request> {
-    return this.http.put<Request>(`${this.url}/${id}/`, request);
+    return this.http.put<Request>(`${this.urlCecy}/${id}/`, request);
   }
 
   public findByid(id: number): Observable<Request> {
@@ -48,7 +49,7 @@ export class RequestService {
    */
   public deleteByid(id: number): Observable<Request> {
     return this.http.delete<Request>(
-      `${this.url}/deleteById/${id}`,
+      `${this.urlCecy}/deleteById/${id}`,
       this.httpOptions
     );
   }

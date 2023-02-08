@@ -53,21 +53,14 @@
           name=""
           id=""
           placeholder="05/09/2002"
-          [(ngModel)]="initialForm.fecha_nacimiento"
+          [(ngModel)]="initialForm.fechaNacimiento"
         />
 
         <label for="" style="margin-bottom: 8px;">Sexo: </label>
-        <app-combobox-api (idEmitter)="initialForm.sexo=$event" [id]="initialForm.sexo"></app-combobox-api>
+        <app-combobox-api (idEmitter)="initialForm.sexoId.id=$event" [id]="initialForm.sexoId.id"></app-combobox-api>
 
         <label for="" style="margin-bottom: 8px;">Etnia: </label>
-        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
-          <option value="" selected >Seleccione una opcion</option>
-          <option value="value1" >Mestixo </option>
-          <option value="value2" >Indigena</option>
-          <option value="value2" >Blanco</option>
-          <option value="value2" >Afroecuatoriano</option>
-          <option value="value2" >Otros</option>
-        </select>
+        <app-combobox-etnia (idEmitter)="initialForm.etniaId.id=$event" [id]="initialForm.etniaId.id"></app-combobox-etnia>
 
         <label style="margin-bottom: 8px; margin-top: 12px;">Direccion domiciliaria: </label>
         <input
@@ -100,23 +93,13 @@
         />
 
         <label for="" style="margin-bottom: 8px;">Nivel de instruccion: </label>
-        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
-          <option value="" selected >Seleccione una opcion</option>
-          <option value="value1" >Primaria </option>
-          <option value="value2" >Secundaria</option>
-          <option value="value2" >Superior</option>
-        </select>
+        <app-combobox-instruccion (idEmitter)="initialForm.instruccionId.id=$event" [id]="initialForm.instruccionId.id"></app-combobox-instruccion>
 
         <label for="" style="margin-bottom: 8px;">Institucion/Empresa: </label>
-        <app-combobox-institucion (idEmitter)="initialForm.institucion=$event" [id]="initialForm.institucion"></app-combobox-institucion>
+        <app-combobox-institucion (idEmitter)="initialForm.institucionId=$event" [id]="initialForm.institucionId"></app-combobox-institucion>
 
         <label for="" style="margin-bottom: 8px;">Cual es su condicion con el instituto?: </label>
-        <select name="select" class="input input-primary" aria-placeholder="Seleccione una opcion" style="margin-bottom: 12px;" required="false">
-          <option value="" selected >Seleccione una opcion</option>
-          <option value="value1" >Estudiante </option>
-          <option value="value2" >Docente</option>
-          <option value="value2" >Externo</option>
-        </select>
+        <app-combobox-roles (idEmitter)="initialForm.tipoPersonaId.id=$event" [id]="initialForm.tipoPersonaId.id"></app-combobox-roles>
       </div>
       <div class="card-actions">
         <button class="btn btn-primary btn-sm" (click)="saveUser()">Guardar</button>

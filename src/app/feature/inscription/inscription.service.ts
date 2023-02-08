@@ -13,7 +13,7 @@ export class InscriptionService {
     headers: new HttpHeaders({ "Content-Type": "application/json" })  ,
   };
 
-  private url: string = 'http://localhost:8080/api/formInscripcion';
+  private url: string = 'http://localhost:8080/api/formInscription';
 
   public save(inscription: Inscription): Observable<Inscription> {
     return this.http.post<Inscription>(this.url+"/save", inscription, this.httpOptions);

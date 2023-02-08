@@ -1,0 +1,9 @@
+<select #selectEtnia (change)="onSelect(selectEtnia.value)" class="select select-primary" name="" id ="">
+  <option value="0" selected disable>Seleccione</option>
+  <option *ngFor="let etnia of etnias"
+  [value]="etnia.id"
+  [selected]="etnia.id === id"
+  >
+      {{etnia.value}}
+  </option>
+</select>

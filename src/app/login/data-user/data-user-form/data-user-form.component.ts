@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogComponent } from '../../restart/restart.component';
+import { DialogComponent, DialogFalseComponent } from '../../restart/restart.component';
 import { DataUserService } from '../data-user.service';
 import { DataUser } from '../data-user';
+import { PersonCecy } from '../../restart/person-cecy';
 
 @Component({
   selector: 'app-data-user-form',
@@ -17,22 +18,41 @@ export class DataUserFormComponent implements OnInit {
     public dataUserService: DataUserService,
     ) {}
 
-    initialForm: DataUser = {
+    initialForm: PersonCecy = {
       id: 0,
       nombres: '',
       apellidos: '',
       cedula: '',
-      fecha_nacimiento: new Date(),
+      fechaNacimiento: new Date(),
       direccion: '',
       convencional: '',
       celular: '',
       email: '',
-      sexo: 0,
-      institucion: 0
+      sexoId: {
+        "id":0,
+        "code" : "",
+        "value": ""},
+      institucionId: 0,
+      etniaId: {
+        "id":0,
+        "code" : "",
+        "value": ""},
+      tipoPersonaId: {
+        "id":0,
+        "code" : "",
+        "value": ""},
+      instruccionId: {
+        "id":0,
+        "code" : "",
+        "value": ""},
+        aceptado: false
     };
 
-    ngOnInit(): void{};
-    saveUser(): void{
+  ngOnInit(): void{
+    this.dialog.open(DialogFalseComponent);
+  };
+
+  saveUser(): void{
     console.table(this.initialForm)
     this.dataUserService.save(this.initialForm).subscribe(() => {
       this.initialForm = {
@@ -40,13 +60,29 @@ export class DataUserFormComponent implements OnInit {
         nombres: '',
         apellidos: '',
         cedula: '',
-        fecha_nacimiento: new Date(),
+        fechaNacimiento: new Date(),
         direccion: '',
         convencional: '',
         celular: '',
         email: '',
-        sexo: 0,
-        institucion: 0
+        sexoId: {
+          "id":0,
+          "code" : "",
+          "value": ""},
+        institucionId: 0,
+        etniaId: {
+          "id":0,
+          "code" : "",
+          "value": ""},
+        tipoPersonaId: {
+          "id":0,
+          "code" : "",
+          "value": ""},
+        instruccionId: {
+          "id":0,
+          "code" : "",
+          "value": ""},
+          aceptado: false
       };
       this.router.navigate(['/login/login']);
       this.dialog.open(DialogComponent);

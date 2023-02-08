@@ -15,7 +15,7 @@ export class ComboboxPublicityComponent implements OnInit {
   roles: string = 'roles'
 
   ngOnInit(): void {
-      this.findAll();
+      this.findByCode();
   }
 
   public findAll():void{
@@ -25,8 +25,18 @@ export class ComboboxPublicityComponent implements OnInit {
     )
   }
 
+  public findByCode(): void {
+    this.catalogueService.findAll().subscribe(
+      (response) =>
+      response.forEach((t) => {
+        if (t.code == 'publicidad') {
+          this.publicities.push(t)
+        }
+      })
+    )
+  }
+
   public onSelect(id: string ){
-    console.log("El id de la ciudad es:" + id);
     this.idEmitter.emit(parseInt(id));
   }
 

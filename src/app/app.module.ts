@@ -21,13 +21,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSortModule } from '@angular/material/sort';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { TokenInterceptor } from './login/login/token.interceptor';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -52,7 +53,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgbModule,
     MatSortModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent, BrowserAnimationsModule],
 })
 export class AppModule {}

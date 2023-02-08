@@ -12,7 +12,7 @@ export class ApiCatalogueService {
     headers: new HttpHeaders({'Content-Type': 'application/json' })
   };
 
-  private url: string = 'http://localhost:8000/api/catalogo';
+  private url: string = 'http://localhost:8082/api/catalogueCecy';
 
   public findById(id: number): Observable<ApiCatalogue> {
     return this.http.get<ApiCatalogue>(`${this.url}/${id}`, this.httpOptions);

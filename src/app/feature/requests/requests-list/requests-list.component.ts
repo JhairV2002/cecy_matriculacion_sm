@@ -1,14 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
-import { Request } from '../request';
-import { RequestService } from '../request.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { User } from 'src/app/login/restart/user';
+import { UserService } from 'src/app/login/restart/user.service';
+import { PersonCecy } from 'src/app/login/restart/person-cecy';
+import { PersonCecyService } from 'src/app/login/restart/person-cecy.service';
 
 export interface Task {
   enabled: boolean;
-  subtaks?: Request[];
+  subtaks?: PersonCecy[];
 }
 
 @Component({
@@ -16,10 +18,13 @@ export interface Task {
   templateUrl: './requests-list.component.html',
 })
 export class RequestsListComponent {
+
+
   constructor(
-    private requestService: RequestService,
+    private requestService: PersonCecyService,
     public sendDialog: MatDialog,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private userService: UserService
   ) {}
 
   displayedColumns: string[] = [
@@ -30,13 +35,26 @@ export class RequestsListComponent {
     'activo',
   ];
 
-  requestsList: Request[] = [];
+  userForm: User =  {
+    id: 0,
+    password: "",
+    name: "",
+    username: "",
+    looked: false,
+    expired: false,
+    enabled: false,
+    roles: {
+      id: 0,
+    }
+  };
 
-  dataSource: MatTableDataSource<Request>;
+  requestsList: PersonCecy[] = [];
+
+  dataSource: MatTableDataSource<PersonCecy>;
 
   allComplete: boolean = false;
 
-  modifiedData: Request[] = [];
+  modifiedData: PersonCecy[] = [];
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -62,7 +80,7 @@ export class RequestsListComponent {
     }
   }
 
-  change(request: Request) {
+  change(request: PersonCecy) {
     if (this.modifiedData.includes(request)) {
       let index = this.modifiedData.indexOf(request);
       this.modifiedData.splice(index, 1);
@@ -117,14 +135,40 @@ export class RequestsListComponent {
 
   save() {
     this.modifiedData.forEach((request) => {
+      if (request.aceptado) {
+        this.userForm.password = request.cedula,
+        this.userForm.name = request.cedula,
+        this.userForm.username = request.cedula,
+        this.userForm.enabled = request.aceptado,
+        this.userForm.roles = request.tipoPersonaId
+      }
+
       this.requestService.update(request.id, request).subscribe((res) => {
         this.requestsList = this.requestsList.filter((req) =>
           req.id === res.id ? res : req
         );
       });
     });
+
     this.modifiedData = [];
     this.sendDialog.open(SendRequestDialogComponent);
+  }
+
+  sendUser(user: User):void{
+    this.userService.save(user).subscribe(()=>{
+      this.userForm = {
+        id: 0,
+        password : "",
+        name: "",
+        username : "",
+        looked: false,
+        expired: false,
+        enabled: false,
+        roles: {
+          id: 0
+        }
+      }
+    })
   }
 
   /**
@@ -141,14 +185,7 @@ export class RequestsListComponent {
   /**
    * findByName
    */
-  public findByName(term: string): void {
-    if (term.length >= 2) {
-      this.requestService
-        .findByName(term)
-        .subscribe((response) => (this.requestsList = response));
-    }
-    if (term.length === 0) this.findAll();
-  }
+
 }
 
 @Component({

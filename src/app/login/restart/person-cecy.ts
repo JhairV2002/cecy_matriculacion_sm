@@ -1,6 +1,6 @@
 import { Catalogue } from "src/app/feature/combobox-publicity/catalogue";
 
-export interface DataUser{
+export interface PersonCecy {
   id: number;
   nombres: string;
   apellidos: string;
@@ -10,9 +10,10 @@ export interface DataUser{
   convencional: string;
   celular: string;
   email: string;
-  sexoId: number;
+  sexoId: Catalogue;
   institucionId: number;
-  etniaId: number;
-  tipoPersonaId: number;
-  instruccionId: number;
+  etniaId: Catalogue;
+  tipoPersonaId: Catalogue;
+  instruccionId: Catalogue;
+  aceptado: boolean;
 }

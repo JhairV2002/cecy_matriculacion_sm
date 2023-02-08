@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { RequestService } from '../request.service';
 import { Request } from '../request';
+import { PersonCecy } from 'src/app/login/restart/person-cecy';
 
 @Component({
   selector: 'app-requests-search',
@@ -8,23 +9,23 @@ import { Request } from '../request';
 })
 export class RequestsSearchComponent {
 
-  constructor(private requestService: RequestService) {}
+  // constructor(private requestService: RequestService) {}
 
-  requests: Request[] = [];
+  // requests: PersonCecy[] = [];
 
-  @Output() requestEmitter = new EventEmitter<Request>();
+  // @Output() requestEmitter = new EventEmitter<Request>();
 
-  onInput(term: string) {
-    if (term.length >= 2) {
-      this.requestService
-        .findByName(term)
-        .subscribe((res) => (this.requests = res));
-    }
-    if (term.length === 0) this.requests = [];
-  }
+  // onInput(term: string) {
+  //   if (term.length >= 2) {
+  //     this.requestService
+  //       .findByName(term)
+  //       .subscribe((res) => (this.requests = res));
+  //   }
+  //   if (term.length === 0) this.requests = [];
+  // }
 
-  onSelect(request: Request) {
-    this.requestEmitter.emit(request);
-  }
-  ngOnInit(): void {}
+  // onSelect(request: Request) {
+  //   this.requestEmitter.emit(request);
+  // }
+  // ngOnInit(): void {}
 }

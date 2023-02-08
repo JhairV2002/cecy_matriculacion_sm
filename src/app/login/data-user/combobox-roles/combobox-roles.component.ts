@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ApiCatalogueService } from './api-catalogue.service';
-import { ApiCatalogue } from './api-catalogue';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApiCatalogueService } from '../combobox-genero/api-catalogue.service';
+import { ApiCatalogue } from '../combobox-genero/api-catalogue';
 
 @Component({
-  selector: 'app-combobox-api',
-  templateUrl: './combobox-api.component.html',
+  selector: 'app-combobox-roles',
+  templateUrl: './combobox-roles.component.html',
 })
-export class ComboboxApiComponent implements OnInit {
+export class ComboboxRolesComponent {
   constructor(private apiCatalogueService: ApiCatalogueService){}
 
-  generos: ApiCatalogue[] = [];
+  roles: ApiCatalogue[] = [];
   @Output() idEmitter = new EventEmitter<number>();
   @Input() id: number = 0;
 
@@ -21,8 +21,8 @@ export class ComboboxApiComponent implements OnInit {
     this.apiCatalogueService.findAll().subscribe(
       (response) =>
       response.forEach((t) => {
-        if (t.code == 'sexo') {
-          this.generos.push(t)
+        if (t.code == 'roles') {
+          this.roles.push(t)
         }
       })
     )

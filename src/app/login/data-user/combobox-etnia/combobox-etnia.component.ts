@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ApiCatalogueService } from './api-catalogue.service';
-import { ApiCatalogue } from './api-catalogue';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApiCatalogueService } from '../combobox-genero/api-catalogue.service';
+import { ApiCatalogue } from '../combobox-genero/api-catalogue';
 
 @Component({
-  selector: 'app-combobox-api',
-  templateUrl: './combobox-api.component.html',
+  selector: 'app-combobox-etnia',
+  templateUrl: './combobox-etnia.component.html'
 })
-export class ComboboxApiComponent implements OnInit {
+export class ComboboxEtniaComponent {
   constructor(private apiCatalogueService: ApiCatalogueService){}
 
-  generos: ApiCatalogue[] = [];
+  etnias: ApiCatalogue[] = [];
   @Output() idEmitter = new EventEmitter<number>();
   @Input() id: number = 0;
 
@@ -21,8 +21,8 @@ export class ComboboxApiComponent implements OnInit {
     this.apiCatalogueService.findAll().subscribe(
       (response) =>
       response.forEach((t) => {
-        if (t.code == 'sexo') {
-          this.generos.push(t)
+        if (t.code == 'etnia') {
+          this.etnias.push(t)
         }
       })
     )
@@ -32,5 +32,4 @@ export class ComboboxApiComponent implements OnInit {
     console.log("El id de la ciudad es:" + id);
     this.idEmitter.emit(parseInt(id));
   }
-
 }

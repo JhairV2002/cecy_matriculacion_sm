@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ApiCatalogueService } from './api-catalogue.service';
-import { ApiCatalogue } from './api-catalogue';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApiCatalogue } from '../combobox-genero/api-catalogue';
+import { ApiCatalogueService } from '../combobox-genero/api-catalogue.service';
 
 @Component({
-  selector: 'app-combobox-api',
-  templateUrl: './combobox-api.component.html',
+  selector: 'app-combobox-instruccion',
+  templateUrl: './combobox-instruccion.component.html',
 })
-export class ComboboxApiComponent implements OnInit {
+export class ComboboxInstruccionComponent {
   constructor(private apiCatalogueService: ApiCatalogueService){}
 
-  generos: ApiCatalogue[] = [];
+  lvlsInstruccion: ApiCatalogue[] = [];
   @Output() idEmitter = new EventEmitter<number>();
   @Input() id: number = 0;
 
@@ -21,8 +21,8 @@ export class ComboboxApiComponent implements OnInit {
     this.apiCatalogueService.findAll().subscribe(
       (response) =>
       response.forEach((t) => {
-        if (t.code == 'sexo') {
-          this.generos.push(t)
+        if (t.code == 'instruccion') {
+          this.lvlsInstruccion.push(t)
         }
       })
     )
@@ -32,5 +32,4 @@ export class ComboboxApiComponent implements OnInit {
     console.log("El id de la ciudad es:" + id);
     this.idEmitter.emit(parseInt(id));
   }
-
 }
